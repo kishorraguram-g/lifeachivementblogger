@@ -5,8 +5,9 @@ export const GET = async (_, { params }) => {
   try {
     await connectDB();
     const { id } = params;
+    console.log(id);
+    console.log('achivement id  consoled')
     const achievement = await AchievementModel.findById(id);
-    
     if (!achievement) {
       return Response.json(
         {

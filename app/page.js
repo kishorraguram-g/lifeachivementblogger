@@ -1,16 +1,29 @@
-"use client"
-import { signIn,signOut,useSession } from "next-auth/react"
-const Home = () => {
-  const {data:session}=useSession();
-  return (
-    session?<div> 
-      <h1>Your are signed in {session.user.email}</h1>
-      <button onClick={()=>signOut()}>Sign Out</button>
-    </div>:<div>
-      <h1>You are not signed in </h1>
-      <button onClick={()=>signIn()}>Sing In</button>
-    </div>
-  )
-}
+"use client";
+import { useSession,signOut } from "next-auth/react";
+import { redirect } from "next/navigation";
+import { useEffect } from "react";
+import AchievementList from "@/component/AchievementList";
+import NewAchievementPage from "./new/page";
 
-export default Home;
+export default function Home() {
+  const { data: session, status } = useSession();
+
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      redirect("/login");
+    }
+    else {
+      console.log('authenicated')
+    }
+  }, [status]);
+
+
+  if (status === "loading") {
+    return <div>Loading...</div>;
+  }
+  return (
+    <div className="">
+      <AchievementList />
+    </div>
+  );
+}

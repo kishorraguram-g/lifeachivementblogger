@@ -1,15 +1,16 @@
+// app/api/achievements/route.js
 import { connectDB } from '@/lib/db';
 import { AchievementModel } from '@/models/AchievementModel';
 
-export const GET = async () => {
+export async function GET() {
   try {
     await connectDB();
-    const achievements = await AchievementModel.find().sort({ dateAchieved: -1 }); // Sort by newest first
-    
+    const achievements = await AchievementModel.find().sort({ dateAchieved: -1 });
+    console.log(achievements);
     return Response.json(
       {
         status: 'success',
-        results: achievements.length,
+        results: achievements.length || 0,
         data: achievements
       },
       { status: 200 }
@@ -24,14 +25,13 @@ export const GET = async () => {
       { status: 500 }
     );
   }
-};
+}
 
-export const POST = async (req) => {
+export async function POST(request) {
   try {
     await connectDB();
-    const data = await req.json();
-    
-    // Validate required fields based on your schema
+    const data = await request.json();
+
     if (!data.title || !data.description || !data.category) {
       return Response.json(
         { 
@@ -42,8 +42,10 @@ export const POST = async (req) => {
       );
     }
 
-    // Create and save the new achievement
-    const newAchievement = await AchievementModel.create(data);
+    const newAchievement = await AchievementModel.create({
+      ...data,
+      dateAchieved: new Date() // Add current date if your schema requires it
+    });
     
     return Response.json(
       { 
@@ -54,7 +56,6 @@ export const POST = async (req) => {
       { status: 201 }
     );
   } catch (err) {
-    // Handle Mongoose validation errors
     if (err.name === 'ValidationError') {
       const errors = Object.values(err.errors).map(el => el.message);
       return Response.json(
@@ -76,4 +77,4 @@ export const POST = async (req) => {
       { status: 500 }
     );
   }
-};
+}
