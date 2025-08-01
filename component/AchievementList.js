@@ -12,7 +12,7 @@ export default function AchievementList() {
   useEffect(() => {
     const fetchAchievements = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/achivements');
+        const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/achivements`);
         if (!response.ok) throw new Error('Failed to fetch achievements');
         const data = await response.json();
         setAchievements(data.data);
@@ -29,7 +29,7 @@ export default function AchievementList() {
   const handleDelete = async (id) => {
     setDeletingId(id);
     try {
-      const response = await fetch(`http://localhost:3000/api/achivements/${id}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/achivements/${id}`, {
         method: "DELETE",
       });
       

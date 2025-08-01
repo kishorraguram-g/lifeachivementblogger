@@ -19,7 +19,7 @@ export default function EditAchievement() {
   useEffect(() => {
     const fetchAchievement = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/api/achivements/${slug}`);
+        const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/achivements/${slug}`);
         if (!response.ok) throw new Error('Failed to fetch achievement');
         const { data } = await response.json();
         
@@ -55,7 +55,7 @@ export default function EditAchievement() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`http://localhost:3000/api/achivements/${slug}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/achivements/${slug}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
