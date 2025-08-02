@@ -74,7 +74,7 @@ export default function EditAchievement() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-indigo-50 to-blue-50 flex items-center justify-center">
         <div className="text-center">
           <svg className="animate-spin h-8 w-8 text-indigo-600 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
@@ -88,7 +88,7 @@ export default function EditAchievement() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-indigo-50 to-blue-50 flex items-center justify-center">
         <div className="bg-red-50 border-l-4 border-red-500 p-6 rounded-xl shadow-sm max-w-md w-full">
           <div className="flex items-center">
             <svg className="h-6 w-6 text-red-500 mr-3" viewBox="0 0 20 20" fill="currentColor">
@@ -102,14 +102,14 @@ export default function EditAchievement() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-lg w-full bg-white rounded-xl shadow-sm p-8">
-        <h1 className="text-2xl font-extrabold text-gray-900 tracking-tight mb-6">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-indigo-50 to-blue-50 flex items-center justify-center py-8 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-lg w-full bg-white rounded-xl shadow-sm p-6">
+        <h1 className="text-2xl font-extrabold text-gray-900 tracking-tight mb-4 text-center">
           Edit Achievement
         </h1>
         
         {error && (
-          <div className="mb-6 p-4 bg-red-50 border-l-4 border-red-500 rounded-lg">
+          <div className="mb-4 p-4 bg-red-50 border-l-4 border-red-500 rounded-lg">
             <div className="flex items-center">
               <svg className="h-5 w-5 text-red-500 mr-2" viewBox="0 0 20 20" fill="currentColor">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
@@ -119,8 +119,8 @@ export default function EditAchievement() {
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div>
+        <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6">
+          <div className="sm:col-span-2">
             <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-1">
               Title
             </label>
@@ -130,12 +130,12 @@ export default function EditAchievement() {
               name="title"
               value={formData.title}
               onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg text-gray-900 focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-200"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-900 focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-200"
               required
             />
           </div>
 
-          <div>
+          <div className="sm:col-span-2">
             <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-1">
               Description
             </label>
@@ -144,8 +144,8 @@ export default function EditAchievement() {
               name="description"
               value={formData.description}
               onChange={handleChange}
-              rows={5}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg text-gray-900 focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-200"
+              rows={3}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-900 focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-200"
               required
             />
           </div>
@@ -160,7 +160,7 @@ export default function EditAchievement() {
               name="dateAchieved"
               value={formData.dateAchieved}
               onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg text-gray-900 focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-200"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-900 focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-200"
               required
             />
           </div>
@@ -174,7 +174,7 @@ export default function EditAchievement() {
               name="category"
               value={formData.category}
               onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg text-gray-900 focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-200"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-900 focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-200"
             >
               <option value="personal">Personal</option>
               <option value="professional">Professional</option>
@@ -192,7 +192,7 @@ export default function EditAchievement() {
               name="difficulty"
               value={formData.difficulty}
               onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg text-gray-900 focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-200"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-900 focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-200"
             >
               <option value="easy">Easy</option>
               <option value="medium">Medium</option>
@@ -211,12 +211,12 @@ export default function EditAchievement() {
               value={formData.points}
               onChange={handleChange}
               min="1"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg text-gray-900 focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-200"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-900 focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-200"
               required
             />
           </div>
 
-          <div className="flex justify-end space-x-4">
+          <div className="sm:col-span-2 flex justify-end space-x-4 mt-4">
             <button
               type="button"
               onClick={() => router.push("/")}

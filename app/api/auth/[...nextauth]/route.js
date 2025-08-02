@@ -8,7 +8,7 @@ import bcrypt from "bcryptjs";
 const uri = process.env.DB_URL;
 const dbName = "achivements";
 
-const handler = NextAuth({
+export const authOptions = {
   providers: [
     GithubProvider({
       clientId: process.env.GITHUB_ID,
@@ -27,7 +27,7 @@ const handler = NextAuth({
           await client.connect();
           const db = client.db(dbName);
           const usersCollection = db.collection("users");
-            console.log(credentials.email);
+          console.log(credentials.email);
           const user = await usersCollection.findOne({ 
             email: credentials.email 
           });
@@ -50,7 +50,6 @@ const handler = NextAuth({
             name: user.name,
             email: user.email
           };
-
         } catch (error) {
           console.error("Auth error:", error);
           throw new Error("Authentication failed");
@@ -67,6 +66,8 @@ const handler = NextAuth({
   pages: {
     signIn: "/login",
   }
-});
+};
+
+const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };
